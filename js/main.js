@@ -6,6 +6,7 @@ canvas.height = 480;
 
 let fps = 0;
 let interval;
+// let debug = true;
 
 let lastUpdate = 0;//Date.now();
 

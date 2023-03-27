@@ -1,8 +1,14 @@
 class Sprite{
 
-    constructor(pSrc, px = 0, py = 0){
-        this.img = new Image;
-        this.img.src = pSrc;
+    // constructor(pSrc, px = 0, py = 0){
+    //     this.img = new Image;
+    //     this.img.src = pSrc;
+    //     this.x = px;
+    //     this.y = py;
+    // }
+
+    constructor(pImg, px = 0, py = 0){
+        this.img = pImg;
         this.x = px;
         this.y = py;
     }

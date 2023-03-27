@@ -19,6 +19,14 @@ class ImageLoader{
         return this.imagesLoadedCount;
     }
 
+    getListImages(){
+        return this.listImages;
+    }
+
+    getLoadedRatio(){
+        return this.imagesLoadedCount / this.getTotalImages();
+    }
+
     start(pCallback){
         this.callback = pCallback;
         this.listPath.forEach(path =>{

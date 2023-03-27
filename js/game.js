@@ -1,5 +1,4 @@
-let img;
-let img2;
+
 let timer;
 const log = console.log;
 
@@ -10,6 +9,7 @@ let key_down = false;
 
 let imageLoader = new ImageLoader();
 let gameReady = false; 
+let listSprite = [];
 
 function rnd(min,max){
     return Math.floor(Math.random() * (max - min)) + min;
@@ -51,7 +51,7 @@ function keyup(t){
 function load(){
     document.addEventListener('keydown', keydown, false);
     document.addEventListener('keyup', keyup, false);
-    img = new Sprite('images/ship.png');
+    // img = new Sprite('images/ship.png');
     //img2 = new Sprite('../images/cardClubs2.png')
     //img.src = "images/ship.png"
     timer = 0;
@@ -76,6 +76,15 @@ function load(){
 
 function startGame(){
     log('starting game...');
+
+    listSprite = [];
+    for(let image of Object.values(imageLoader.getListImages())){
+        let mysprite = new Sprite(image);
+        mysprite.x = rnd(1,640);
+        mysprite.y = rnd(1,480);
+        listSprite.push(mysprite);
+    }
+
     gameReady = true;
 }
 
@@ -105,10 +114,18 @@ function update(dt ){
 
 function draw(pCtx){
     //pCtx.drawImage(img, x, y);
-    img.draw(pCtx);
+    // img.draw(pCtx);
     //img2.draw(pCtx);
     // imageLoader.draw(pCtx);
     if(!gameReady){
+        let ratio = imageLoader.getLoadedRatio();
+        pCtx.fillStyle = "rgb(255,255,255)";
+        pCtx.fillRect(1, 1, 400, 100);
+        pCtx.fillStyle = "rgb(0,255,0)";
+        pCtx.fillRect(1, 1, 400 * ratio, 100);
         return;
     }
+    listSprite.forEach(sprite =>{
+        sprite.draw(pCtx);
+    });
 }
